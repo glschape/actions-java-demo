@@ -1,25 +1,19 @@
-name: Java CI
-
+name: Run Java Program
 on:
-  push:
-    branches: [ "main" ]
-
+push:
+branches: [ main ]
+pull_request:
 jobs:
-  build-and-run:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Compile Hello.java
-        run: javac Hello.java
-
-      - name: Run program
-        run: java Hello
+run-java:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v4
+- name: Set up Java
+uses: actions/setup-java@v4
+with:
+distribution: temurin
+java-version: '17'
+- name: Compile
+run: javac Hello.java
+- name: Run
+run: java Hello
